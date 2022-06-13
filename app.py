@@ -5,7 +5,7 @@ import os
 from flask import Flask, session, url_for, redirect, render_template, request, abort, flash
 
 app = Flask(__name__)
-BACKEND_URL = os.environ.get("BACKEND_URL", default="http://localhost:8086")
+BACKEND_URL = os.environ.get("BACKEND_URL", default="http://127.0.0.1:5000")
 
 @app.errorhandler(401)
 def FUN_401(error):
