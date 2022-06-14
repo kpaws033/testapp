@@ -6,8 +6,9 @@ phases:
       - $(aws ecr get-login --no-include-email --region eu-west-2)
   build:
     commands:
-      - ddocker build -t frontendrepo.latest .
-      - ddocker tag frontendrepo:latest 926450130867.dkr.ecr.eu-west-2.amazonaws.com/frontendrepo:latest
+
+      - docker build -t frontendrepo:latest .
+      - docker tag frontendrepo:latest 926450130867.dkr.ecr.eu-west-2.amazonaws.com/frontendrepo:latest
   post_build:
     commands:
       - docker push 926450130867.dkr.ecr.eu-west-2.amazonaws.com/frontendrepo:latest
