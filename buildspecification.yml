@@ -1,0 +1,15 @@
+version: 0.1
+
+phases:
+  pre_build:
+    commands:
+      - aws ecr get-login-password --region eu-west-2 | docker login --username AWS --password-stdin 926450130867.dkr.ecr.eu-west-2.amazonaws.com
+  build:
+    commands:
+      - ddocker build -t frontendrepo.latest .
+      - ddocker tag frontendrepo:latest 926450130867.dkr.ecr.eu-west-2.amazonaws.com/frontendrepo:latest
+  post_build:
+    commands:
+      - docker push 926450130867.dkr.ecr.eu-west-2.amazonaws.com/frontendrepo:latest
+artifacts:
+  files: imagedefinitions.json
