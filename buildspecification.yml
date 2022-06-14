@@ -11,5 +11,6 @@ phases:
   post_build:
     commands:
       - docker push 926450130867.dkr.ecr.eu-west-2.amazonaws.com/frontendrepo:latest
+      - printf '[{"name":"fapptask","imageUri":"%s"}]' 926450130867.dkr.ecr.eu-west-2.amazonaws.com/frontendrepo:latest  > imagedefinitions.json
 artifacts:
   files: imagedefinitions.json
