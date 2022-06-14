@@ -3,7 +3,7 @@ version: 0.1
 phases:
   pre_build:
     commands:
-      - aws ecr get-login-password --region eu-west-2 | docker login --username AWS --password-stdin 926450130867.dkr.ecr.eu-west-2.amazonaws.com
+      - $(aws ecr get-login --no-include-email --region eu-west-2)
   build:
     commands:
       - ddocker build -t frontendrepo.latest .
