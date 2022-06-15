@@ -6,35 +6,12 @@ locals {
   region = "eu-west-2"
 }
 
-
-################################################################################
-# VPC Module
-################################################################################
-
-module "vpc" {
-  source = "../../"
-
-  name = "simple-example"
-  cidr = "10.0.0.0/16"
-
-  azs             = ["${local.region}a", "${local.region}b"]
-  private_subnets = ["10.0.1.0/24", "10.0.2.0/24"]
-  public_subnets  = ["10.0.101.0/24", "10.0.102.0/24"]
-
-
-  enable_nat_gateway = false
-  single_nat_gateway = true
-
-  public_subnet_tags = {
-    Name = "overridden-name-public"
-  }
-
-  tags = {
-    Owner       = "user"
-    Environment = "dev"
-  }
-
-  vpc_tags = {
-    Name = "appvpc"
-  }
+provider "aws" {
+  access_key = "AKIA5PNF3D6Z5WJRQUUJ"
+  secret_key = "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"
+  region     = var.aws_region
+  #if you are running from AWS ec2 linux instance please use bellow credentials section
+  #shared_credentials_file = "$HOME/.aws/credentials"
+  #profile = "default"
 }
+
